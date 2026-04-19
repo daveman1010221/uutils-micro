@@ -38,6 +38,12 @@ rustPlatform.buildRustPackage {
     rm -f .cargo/config.toml
   '';
 
+  postInstall = ''
+    for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp; do
+      ln -s $out/bin/coreutils $out/bin/$tool
+    done
+  '';
+
   doCheck = false;
 
   meta = {
