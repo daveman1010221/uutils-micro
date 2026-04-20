@@ -5,8 +5,12 @@
 # feature flags so only the requested tools are included in the binary.
 #
 # Tools included:
-#   ls, cat, echo, printf, env, true, false,
-#   mkdir, rm, cp, mv, chmod, chown, mktemp
+# "ls" "cat" "echo" "printf" "env"
+# "true" "false" "mkdir" "rm" "cp"
+# "mv" "chmod" "chown" "mktemp" "chroot"
+# "ln" "stat" "id" "whoami" "sleep"
+# "touch" "dirname" "basename"
+# "feat_acl"
 #
 # Closure size: ~52MB (vs ~1.54GB for the full package)
 
@@ -28,7 +32,10 @@ rustPlatform.buildRustPackage {
   buildFeatures = [
     "ls" "cat" "echo" "printf" "env"
     "true" "false" "mkdir" "rm" "cp"
-    "mv" "chmod" "chown" "mktemp" "feat_acl"
+    "mv" "chmod" "chown" "mktemp" "chroot"
+    "ln" "stat" "id" "whoami" "sleep"
+    "touch" "dirname" "basename"
+    "feat_acl"
   ];
 
   buildInputs      = [ acl ];
@@ -39,7 +46,8 @@ rustPlatform.buildRustPackage {
   '';
 
   postInstall = ''
-    for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp; do
+    for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp \
+                chroot ln stat id whoami sleep touch dirname basename; do
       ln -s $out/bin/coreutils $out/bin/$tool
     done
   '';
