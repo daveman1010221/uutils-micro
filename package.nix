@@ -47,7 +47,8 @@ rustPlatform.buildRustPackage {
 
   postInstall = ''
     for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp \
-                chroot ln stat id whoami sleep touch dirname basename; do
+                chroot ln stat id whoami sleep touch dirname basename \
+                install readlink nproc uname; do
       ln -s $out/bin/coreutils $out/bin/$tool
     done
   '';
