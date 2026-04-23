@@ -10,7 +10,7 @@
 # "mv" "chmod" "chown" "mktemp" "chroot"
 # "ln" "stat" "id" "whoami" "sleep"
 # "touch" "dirname" "basename"
-# "feat_acl"
+# "feat_acl" "install" "readlink" "nproc" "uname"
 #
 # Closure size: ~52MB (vs ~1.54GB for the full package)
 
@@ -34,8 +34,8 @@ rustPlatform.buildRustPackage {
     "true" "false" "mkdir" "rm" "cp"
     "mv" "chmod" "chown" "mktemp" "chroot"
     "ln" "stat" "id" "whoami" "sleep"
-    "touch" "dirname" "basename"
-    "feat_acl"
+    "touch" "dirname" "basename" "feat_acl"
+    "install" "readlink" "nproc" "uname"
   ];
 
   buildInputs      = [ acl ];
