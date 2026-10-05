@@ -9,7 +9,7 @@
 # "true" "false" "mkdir" "rm" "cp"
 # "mv" "chmod" "chown" "mktemp" "chroot"
 # "ln" "stat" "id" "whoami" "sleep"
-# "touch" "dirname" "basename" "feat_acl"
+# "touch" "dirname" "basename"
 # "install" "readlink" "nproc" "uname"
 # "tail" "base64"
 #
@@ -35,7 +35,7 @@ rustPlatform.buildRustPackage {
     "true" "false" "mkdir" "rm" "cp"
     "mv" "chmod" "chown" "mktemp" "chroot"
     "ln" "stat" "id" "whoami" "sleep"
-    "touch" "dirname" "basename" "feat_acl"
+    "touch" "dirname" "basename"
     "install" "readlink" "nproc" "uname"
     "tail" "base64"
   ];
@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage {
     rm -f .cargo/config.toml
   '';
 
-  postInstall = '' for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp chroot ln stat id whoami sleep touch dirname basename feat_acl install readlink nproc uname tail base64 ; do
+  postInstall = '' for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp chroot ln stat id whoami sleep touch dirname basename install readlink nproc uname tail base64 ; do
       ln -s $out/bin/coreutils $out/bin/$tool
     done
   '';
