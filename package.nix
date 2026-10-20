@@ -11,7 +11,7 @@
 # "ln" "stat" "id" "whoami" "sleep"
 # "touch" "dirname" "basename"
 # "install" "readlink" "nproc" "uname"
-# "tail" "base64"
+# "tail" "base64" "timeout"
 #
 # Closure size: ~52MB (vs ~1.54GB for the full package)
 
@@ -37,7 +37,7 @@ rustPlatform.buildRustPackage {
     "ln" "stat" "id" "whoami" "sleep"
     "touch" "dirname" "basename"
     "install" "readlink" "nproc" "uname"
-    "tail" "base64"
+    "tail" "base64" "timeout"
   ];
 
   buildInputs      = [ acl ];
@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage {
     rm -f .cargo/config.toml
   '';
 
-  postInstall = '' for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp chroot ln stat id whoami sleep touch dirname basename install readlink nproc uname tail base64 ; do
+  postInstall = '' for tool in ls cat echo printf env true false mkdir rm cp mv chmod chown mktemp chroot ln stat id whoami sleep touch dirname basename install readlink nproc uname tail base64 timeout ; do
       ln -s $out/bin/coreutils $out/bin/$tool
     done
   '';
